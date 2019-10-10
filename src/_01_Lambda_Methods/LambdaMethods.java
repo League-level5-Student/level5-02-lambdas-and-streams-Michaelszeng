@@ -1,5 +1,7 @@
 package _01_Lambda_Methods;
 
+import java.lang.reflect.Array;
+
 public class LambdaMethods {
 	public static void main(String[] args) {
 		// 1. Look at the SpecialPrinter function interface.
@@ -47,9 +49,21 @@ public class LambdaMethods {
 			System.out.println(s2);
 		}, "custon message");
 		//5. Call the printCustonMessage method using a lambda so that the String prints without any vowels.
+		String[] vowels = {"a", "e", "i", "o", "u", "y"};
 		printCustomMessage((s)->{
-			
-		}, "r");
+			for (int i=0; i<s.length(); i++) {
+				boolean print = true;
+				for (int j=0; j<6; j++) {
+					if (s.substring(i, i+1).contentEquals(vowels[j])) {
+						print = false;
+						break;
+					}
+				}
+				if (print) {
+					System.out.print(s.substring(i, i+1));
+				}
+			}
+		}, "custon message");
 	}
 	
 	public static void printCustomMessage(SpecialPrinter sp, String value) {
